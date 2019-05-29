@@ -10,7 +10,7 @@ class Sensors
     self.key =  File.read(key_file) if key_file_exists? key_file
     self.telnet = Net::Telnet::new("Host" => ip, "Port" => port, "Timeout" => 5, "Prompt" => /OK/n)
     emualtor_authenticate
-    self.sensors = device_sensors
+    self.sensors = device_sensors.uniq
   end
   
   def key_file_exists? file
@@ -70,8 +70,12 @@ class Sensors
   end
   
   def device_sensors
-    options = command "sensor status"
-    options.split("\n").map { |o| o.chop }[0..-2]
+    #TODO fix this hack later...
+    3.times do
+      options = command "sensor status"
+      @returned_sensors = options.split("\n").map { |o| o.chop }[0..-2]
+    end
+    @returned_sensors
   end
 
   def get_value sensor

@@ -1,7 +1,7 @@
 gem 'eyes_selenium', '=3.10.1'
 require 'eyes_selenium'
 require 'appium_lib'
-require_relative 'android_sensor.rb'
+require_relative '../android_sensor.rb'
 require 'pry'
 
 #Talk about enabliing touch sensor on android
@@ -194,6 +194,17 @@ describe 'Android Native Visual VR Assertions' do
     end
   end
 
+  start = Time.now
+  until driver.find_element_by_image("./images/orient_images/center_orient.png").location.to_h[:x] == screen_center[:x]
+    #turn :left, 0.2
+    @sensors.set_value 'gyroscope', { x: '1', y: '0', z: '0' }
+    @sensors.set_value("magnetic-field", {:x=>"5.9", :y=>"-9.53674e-07", :z=>"-48.4"})
+    @sensors.set_value("orientation", {:x=>"0", :y=>"0", :z=>"1.5708"})
+    @sensors.set_value("magnetic-field-uncalibrated", {:x=>"5.9", :y=>"-9.53674e-07", :z=>"-48.4"})
+    @sensors.set_value("acceleration", {:x=>"9.81", :y=>"0", :z=>"0"})
+    break if Time.now - start > 30
+  end
+
   def rotate_until_x image
     #side = detect_image_side_location image
     start = Time.now
@@ -270,11 +281,39 @@ describe 'Android Native Visual VR Assertions' do
     end
   end
 
-  def turn direction, time
-    dir = (1 * direction).to_s
-    @sensors.set_value 'gyroscope', {x:dir, y:'0', z:'0'}
+  VR_MENU_ITEM_OPTION = {
+      :acceleration=>{:x=>"5.76617", :y=>"-1.85273", :z=>"-7.71717"},
+      :gyroscope=>{:x=>"0", :y=>"0", :z=>"0"},
+      :"magnetic-field"=>{:x=>"-35.6885", :y=>"-7.75553", :z=>"-32.3041"},
+      :orientation=>{:x=>"0.942478", :y=>"0.235619", :z=>"1.5708"},
+      :temperature=>{:x=>"0", :y=>"0", :z=>"0"},
+      :proximity=>{:x=>"1", :y=>"0", :z=>"0"},
+      :light=>{:x=>"0", :y=>"0", :z=>"0"},
+      :pressure=>{:x=>"1013.25", :y=>"0", :z=>"0"},
+      :humidity=>{:x=>"0", :y=>"0", :z=>"0"},
+      :"magnetic-field-uncalibrated"=>{:x=>"-35.6885", :y=>"-7.75553", :z=>"-32.3041"},
+      :"gyroscope-uncalibrated"=>{:x=>"0", :y=>"0", :z=>"0"}
+  }
+
+  def turn direction = {}, time
+    case direction
+    when :left
+      coords = { x: '1', y: '0', z: '0' }
+    when :right
+      coords = { x: '-1', y: '0', z: '0' }
+    when :up
+      coords = { x: '0', y: '-1', z: '0' }
+    when :down
+      coords = { x: '0', y: '1', z: '0' }
+    end
+    @sensors.set_value 'gyroscope', coords
     sleep time
-    @sensors.set_value 'gyroscope', {x:'0', y:'0', z:'0'}
+    @sensors.set_value 'gyroscope', { x: '0', y: '0', z: '0' }
+  end
+
+  def blah direction = {}, time
+    puts direction
+    puts time
   end
   #
   # hammer_location.map { |x| x.keys }.flatten.each do |sensor|

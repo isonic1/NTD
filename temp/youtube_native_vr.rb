@@ -1,7 +1,7 @@
 gem 'eyes_selenium', '=3.10.1'
 require 'eyes_selenium'
 require 'appium_lib'
-require_relative 'android_sensor.rb'
+require_relative '../android_sensor.rb'
 require 'pry'
 
 #Talk about enabliing touch sensor on android
