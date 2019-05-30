@@ -1,12 +1,5 @@
 require 'appium_lib'
 require_relative 'android_sensor.rb'
-require 'pry'
-
-#Reference articles
-#https://www.npmjs.com/package/opencv4nodejs
-#https://cmake.org/download/
-#https://appium.readthedocs.io/en/latest/en/writing-running-appium/image-comparison/
-#https://developer.android.com/studio/run/emulator-console
 
 describe 'Android Native Visual VR Assertions' do
 
@@ -51,32 +44,19 @@ describe 'Android Native Visual VR Assertions' do
     swipe_device({x:start_x,y:start_y}, {x:end_x,y:end_y})
   end
 
+  def tap args = {}
+    begin
+      Appium::TouchAction.new.tap(args).release.perform
+    rescue
+      nil
+    end
+  end
+
   def move_to coord
     size = @window_size
     end_x = (size[0] / 2).to_f
     end_y = coord[:y]
     swipe_device(coord, {x:end_x, y:end_y})
-  end
-
-  def look_for_image image
-    start = Time.now
-    until (driver.find_element_by_image(image).displayed? rescue false) do
-      swipe_right
-      sleep 0.5
-      if Time.now - start > 60
-        puts "Could not find image: #{image}"
-        @found = false
-        break
-      else
-        @found = true
-      end
-    end
-    if @found
-      puts "Found Image: #{image}"
-      sleep 1
-      coords = driver.find_element_by_image(image).location.to_h
-      center_screen coords
-    end
   end
 
   def center_image image
@@ -133,14 +113,6 @@ describe 'Android Native Visual VR Assertions' do
     else
       image_score = validate_view(baseline_path, checkpoint_path)
       expect(image_score["score"]).to be >= score_threshold
-    end
-  end
-  
-  def tap args = {}
-    begin
-      Appium::TouchAction.new.tap(args).release.perform
-    rescue
-      nil
     end
   end
 

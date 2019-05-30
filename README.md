@@ -23,7 +23,7 @@
 ### Examples 
 
 * vr_web_test.rb: 
-    * Set your Applitools APIKey as environment variable. e.g export APPLITOOLS_API_KEY=<your apikey>
+    * Set your Applitools APIKey as environment variable. e.g export APPLITOOLS_API_KEY="your apikey"
     * Example: ```rspec vr_web_test.rb```
     
 * vr_cities_non_vr.rb: 
@@ -35,7 +35,7 @@
     * Validate Baselines Example: ```rspec vr_cities_vr.rb```
     
 * video_to_image.rb: 
-    * Set your Applitools APIKey as environment variable. e.g export APPLITOOLS_API_KEY=<your apikey>
+    * Set your Applitools APIKey as environment variable. e.g export APPLITOOLS_API_KEY="your apikey"
     * Example: ```ruby video_to_image.rb 'https://www.usatoday.com/vrstories/assets/media/blueangels.mp4' 'VR Video Frames' 'VR Example'```
 
 

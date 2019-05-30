@@ -4,7 +4,6 @@ require 'eyes_images'
 require 'parallel'
 require 'openssl'
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-require 'pry'
 
 class VideoApplitoolsTester
   
@@ -96,11 +95,3 @@ else
   my_test = VideoApplitoolsTester.new(ARGV[0], ARGV[1], ARGV[2])
   my_test.run_test
 end
-
-
-#http://www.bugcodemaster.com/article/extract-images-frame-frame-video-file-using-ffmpeg
-# Parallel.map(files, in_processes: 4) do |file|
-#   eyes.open(app_name: app_name, test_name: File.basename(file))
-#   eyes.check_image(image_path: file, tag: File.basename(file))
-#   eyes.close(false)
-# end

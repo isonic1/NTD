@@ -189,8 +189,6 @@ describe 'Android Native Visual VR Assertions' do
 
   it 'VR Visual Validation' do |e|
 
-    binding.pry
-
     set_sensor_values_to VR_UP_SENSOR_VALUES
 
     compare_images './images/baselines/vr_cities/up_vr.png', './images/checkpoints/vr_cities/up_vr.png'
@@ -212,24 +210,6 @@ describe 'Android Native Visual VR Assertions' do
     set_sensor_values_to VR_RIGHT2_SENSOR_VALUES
 
     compare_images './images/baselines/vr_cities/right2_vr.png', './images/checkpoints/vr_cities/right2_vr.png'
-
-
-    # @eyes.open(driver: driver, app_name: 'VR Cities', test_name: "Android VR")
-    # @eyes.check_window 'level'
-    # swipe_up
-    # sleep 1
-    # @eyes.check_window 'up'
-    # 2.times { swipe_down; sleep 1 }
-    # @eyes.check_window 'down'
-    # swipe_up
-    # sleep 1
-    # swipe_right
-    # sleep 1
-    # @eyes.check_window 'right 1'
-    # swipe_right
-    # sleep 1
-    # @eyes.check_window 'right 2'
-    # @eyes.close(false)
 
   end
 end
