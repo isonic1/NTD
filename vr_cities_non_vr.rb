@@ -3,7 +3,6 @@ require_relative 'android_sensor.rb'
 require 'pry'
 
 #Reference articles
-#npm i -g opencv4nodejs
 #https://www.npmjs.com/package/opencv4nodejs
 #https://cmake.org/download/
 #https://appium.readthedocs.io/en/latest/en/writing-running-appium/image-comparison/
