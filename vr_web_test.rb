@@ -1,5 +1,4 @@
 require 'eyes_selenium'
-require 'pry'
 
 def reset_canvas_orientation driver, timeout
   driver.execute_script("var ele = document.querySelector('a.control.tooltip.help'); ele.click();")

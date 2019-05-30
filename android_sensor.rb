@@ -9,7 +9,7 @@ class Sensors
     key_file = ENV['EMULATOR_AUTH_TOKEN_FILE'] || "#{home_dir}/.emulator_console_auth_token"
     self.key =  File.read(key_file) if key_file_exists? key_file
     self.telnet = Net::Telnet::new("Host" => ip, "Port" => port, "Timeout" => 5, "Prompt" => /OK/n)
-    emualtor_authenticate
+    authenticate_emulator
     self.sensors = device_sensors.uniq
   end
   
@@ -24,7 +24,7 @@ class Sensors
     end
   end
   
-  def emualtor_authenticate
+  def authenticate_emulator
     command "auth #{key}", wait
     puts "Authenticaed!"
   end

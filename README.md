@@ -11,9 +11,10 @@
     * ```npm install -g appium```
 * [cmake](https://cmake.org/download/)
 * OpenCV installed
-    * ```npm i -g opencv4nodejs```
+    * ```$ brew install opencv```
+    * ```$ npm i -g opencv4nodejs```
 * FFmpeg installed
-    * ```brew install ffmpeg```
+    * ```$ brew install ffmpeg```
 * An [Applitools](https://www.applitools.com) account. Free accounts are available!
 
 ### Setup Process:
@@ -24,19 +25,20 @@
 
 * vr_web_test.rb: 
     * Set your Applitools APIKey as environment variable. e.g export APPLITOOLS_API_KEY="your apikey"
-    * Example: ```rspec vr_web_test.rb```
-    
+    * Example: ```$ rspec vr_web_test.rb```
+ 
 * vr_cities_non_vr.rb: 
-    * Create Baselines Example: ```BASELINES=1 rspec vr_cities_non_vr.rb```
-    * Validate Baselines Example: ```rspec vr_cities_non_vr.rb```
+    * Install [VR Cities App](https://play.google.com/store/apps/details?id=com.Smart2it.VR.Smart2VR.VRCities&hl=en) from Google Play
+    * Create Baselines Example: ```$ BASELINES=1 rspec vr_cities_non_vr.rb```
+    * Validate Baselines Example: ```$ rspec vr_cities_non_vr.rb```
     
-* vr_cities_vr.rb: 
-    * Create Baselines Example: ```BASELINES=1 rspec vr_cities_vr.rb```
-    * Validate Baselines Example: ```rspec vr_cities_vr.rb```
+* vr_cities_vr.rb:
+    * Install [VR Cities App](https://play.google.com/store/apps/details?id=com.Smart2it.VR.Smart2VR.VRCities&hl=en) from Google Play
+    * Create Baselines Example: ```$ BASELINES=1 rspec vr_cities_vr.rb```
+    * Validate Baselines Example: ```$ rspec vr_cities_vr.rb```
     
 * video_to_image.rb: 
     * Set your Applitools APIKey as environment variable. e.g export APPLITOOLS_API_KEY="your apikey"
-    * Example: ```ruby video_to_image.rb 'https://www.usatoday.com/vrstories/assets/media/blueangels.mp4' 'VR Video Frames' 'VR Example'```
-
+    * Example: ```$ ruby video_to_image.rb 'https://www.usatoday.com/vrstories/assets/media/blueangels.mp4' 'VR Video Frames' 'VR Example'```
 
 

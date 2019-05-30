@@ -59,18 +59,6 @@ describe 'Android Native Visual VR Assertions' do
     swipe_device(coord, {x:end_x, y:end_y})
   end
 
-  def center_image image
-    start = Time.now
-    x = screen_center[:x]
-    y = screen_center[:y]
-    #screen_center.values.zip(driver.find_element_by_image(image).location.to_a).map { |v| v.inject(:-).abs }.inject(:+).abs < 5
-    # driver.find_element_by_image(image).location.to_h[:x].between?((x-3), (x+3))
-    until driver.find_element_by_image(image).location.to_h == screen_center
-      center_screen driver.find_element_by_image(image).location.to_h
-      break if Time.now - start > 60
-    end
-  end
-
   def screen_center
     { x: @window_size[0] / 2, y: @window_size[1] / 2 }
   end
