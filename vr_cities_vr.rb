@@ -43,7 +43,7 @@ describe 'Android Native Visual VR Assertions' do
       @sensors.set_value sensor.to_s, values
     end
     puts ""
-    sleep 15
+    sleep 45
   end
 
   def get_orientation_value
@@ -91,7 +91,7 @@ describe 'Android Native Visual VR Assertions' do
       driver.save_screenshot(baseline_path)
     else
       image_score = validate_view(baseline_path, checkpoint_path)
-      #expect(image_score["score"]).to be >= score_threshold
+      expect(image_score["score"]).to be >= score_threshold
     end
   end
 
@@ -103,8 +103,17 @@ describe 'Android Native Visual VR Assertions' do
   end
 
   def score_threshold
-    0.75
+    0.90
   end
+
+  VR_STARTING_SENSOR_VALUES = {
+      :acceleration=>{:x=>"0", :y=>"9.77631", :z=>"0.812349"},
+      :gyroscope=>{:x=>"0", :y=>"0", :z=>"0"},
+      :"magnetic-field"=>{:x=>"0", :y=>"9.88766", :z=>"-47.7452"},
+      :orientation=>{:x=>"-0.0829031", :y=>"0", :z=>"0"},
+      :"magnetic-field-uncalibrated"=>{:x=>"0", :y=>"9.88766", :z=>"-47.7452"},
+      :"gyroscope-uncalibrated"=>{:x=>"0", :y=>"0", :z=>"0"}
+  }
 
   VR_UP_SENSOR_VALUES = {
       :acceleration=>{:x=>"5.76617", :y=>"-9.53674e-07", :z=>"-7.93646"},
@@ -165,6 +174,8 @@ describe 'Android Native Visual VR Assertions' do
 
     @sensors = Sensors.new(5554)
     @sensors.enabled.each { |s| puts "Enabled Sensors: #{s}" }
+
+    set_sensor_values_to VR_STARTING_SENSOR_VALUES
 
     navigate_to_vr_app
     force_orientation_to_landscape

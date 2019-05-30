@@ -2,9 +2,6 @@
 
 ### Code examples for the talk I gave on automating virtual reality apps.
 
-# Disclaimer
-* I'm not an expert in VR 
-
 ### Prerequisites
 * Android Studio installed with at least one emulator or device with API level 26 or greater.
 * Appium and all of it's dependencies installed.
